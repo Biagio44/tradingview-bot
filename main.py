@@ -9,8 +9,8 @@ def screenshot_tradingview(pair="BTCUSDT", output_path="chart.png"):
         context = browser.new_context(viewport={"width": 1280, "height": 720})
         page = context.new_page()
 
-        page.goto(url)
-        time.sleep(10)  # attendre le chargement complet
+        page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        time.sleep(15)
 
         try:
             page.locator('text=Maybe later').click(timeout=3000)
